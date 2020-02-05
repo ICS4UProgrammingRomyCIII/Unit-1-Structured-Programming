@@ -6,24 +6,36 @@
  * This program ... Calculates the number of logs that can fit in a truck.
 */
 
+import java.util.Scanner;
+
 public class Logging_Company {
 	static final int MAPLE_LOG_WEIGHT = 20;
 	static final int MAX_CARRY_CAPACITY = 1100;
+	static Scanner scan = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		int i;
-		double[] logLengths = new double[] {0.25, 0.5, 1.0};
-		
-		for (i = 0; i < 3; i++){
-			int totalLogs;
-			totalLogs = CalculateNLogs(logLengths[i]);
-			System.out.println("The number of logs with a length of " + logLengths[i] + "m that can fit on the truck is " + totalLogs);
-		}
+		CalculateNLogs();
 	}
 	
-	static int CalculateNLogs(double length) {
+	public static void CalculateNLogs() {
 		int numLogs; 
-		numLogs = (int)(MAX_CARRY_CAPACITY / (MAPLE_LOG_WEIGHT * length));
-		return numLogs;
+		double logLength;
+		try {
+			System.out.print("Please type in a length for the logs.....");
+			String usrInput = scan.nextLine();
+			if (usrInput != null) {
+				logLength = Double.parseDouble(usrInput);
+			}
+			else {
+				return;
+			}
+			numLogs = (int)(MAX_CARRY_CAPACITY / (MAPLE_LOG_WEIGHT * logLength));
+			System.out.println("The number of logs with a length of " + logLength + "m that can fit on the truck is " + numLogs);
+		}
+		catch (Exception e){
+			System.out.println("Invalid Number");
+			CalculateNLogs();
+			
+		}
 	}
 }
