@@ -17,12 +17,12 @@ public class Einsteins_Equation {
 	}
 	
 	public static void CalculateEnergy() {
-		int massObject;
+		Double massObject;
 		try {
 			System.out.print("Please type in a number.....");
 			String usrInput = scan.nextLine();
 			if (usrInput != null) {
-				massObject = Integer.parseInt(usrInput);
+				massObject = Double.parseDouble(usrInput);
 			}
 			else {
 				return;
