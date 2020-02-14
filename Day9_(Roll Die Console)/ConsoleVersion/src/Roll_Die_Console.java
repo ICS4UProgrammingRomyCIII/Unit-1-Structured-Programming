@@ -1,3 +1,11 @@
+/*
+ * Created by: Romy I. Chu III
+ * Created on: 14-Feb-2019
+ * Created for: ICS4U
+ * Day #4 (Roll Die Console)
+ * This program ... Generates a random number, given the maximum number by the user.
+*/
+
 import java.util.Random;
 import java.util.Scanner;
 
