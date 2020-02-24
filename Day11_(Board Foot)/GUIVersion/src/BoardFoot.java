@@ -17,7 +17,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import javax.swing.JOptionPane;
 
 public class BoardFoot {
-
 	protected Shell frmBoardFoot;
 	private Text txtFirstNum;
 	private Text txtSecondNum;
