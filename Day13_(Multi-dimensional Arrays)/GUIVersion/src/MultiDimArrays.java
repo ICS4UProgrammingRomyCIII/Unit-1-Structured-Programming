@@ -33,7 +33,8 @@ public class MultiDimArrays extends JFrame {
 	private JTable table;
 	private JLabel lblAverage;
 	
-	String columns[]={"BLANK", "Student 1", "Student 2", "Student 3", "Student 4"}; 
+	//These are just like a template for what the table will look like.
+	String columns[]={"","","","",""}; 
 	String data[][]={ {"","Student 1","Student 2","Student 3","Student 4"},    
                		  {"Asgin. 1","","","",""},
                		  {"Asgin. 2","","","",""},
@@ -41,13 +42,7 @@ public class MultiDimArrays extends JFrame {
                	  	  {"Asgin. 4","","","",""},
                	  	  {"Asgin. 5","","","",""},
                		  {"Asgin. 6","","","",""}};
-	Integer markData[][] = {{null, null, null, null},
-							{null, null, null, null},
-							{null, null, null, null},
-							{null, null, null, null},
-							{null, null, null, null},
-							{null, null, null, null},
-						   };
+	//This will be used to generate a random number.
 	Random ranInt = new Random();
 	
 	public static void main(String[] args) {
@@ -86,43 +81,41 @@ public class MultiDimArrays extends JFrame {
 		JButton btnGenerateGrades = new JButton("Generate Grades");
 		btnGenerateGrades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//This is for the marks as an int type.
+				int[][] markData = new int[6][4];
+				
+				//These nested for loops will iterate through the 2D array...
 				for(int row = 1; row <= table.getRowCount() - 1; row++){
 					for(int column = 1; column <= table.getColumnCount() - 1; column++) {
+						//For each space in the 2D array...
+						//Generate a random integer, between 0 and 100...
 						int output = ranInt.nextInt(101);
+						//Change the value of the table, and display it to the user.
 						table.setValueAt(Integer.toString(output), row, column);
+						//Fill the markData array.
 						markData[row - 1][column - 1] = output;
 					}
 				}
+				//This will call the Average function and change the label to display the returned string
+				lblAverage.setText(Average(markData) + "%");
 			}
 		});
 		btnGenerateGrades.setBounds(10, 11, 120, 23);
 		contentPane.add(btnGenerateGrades);
 	}
 	
-	public double Average(int[][]studentMarks, int numStudents) {
-		System.out.println("Called");
-		//variables
-		double average = 0.0;
-		int mark = 0;
-		int totalSum = 0;
-		
-		//loop through the students
-		for (int index = 0; index < studentMarks.length; index++) {
-			 
-			//loop through each students marks
-			for(int marks = 0; marks < studentMarks[1].length; marks ++) {
-				
-				//get the students mark
-				mark = studentMarks[index][marks];
-				
-				//add to the total
-				totalSum = totalSum + mark;
+	//This function will take a int 2D array and output a string, which will be the average of all the ints.
+	public String Average(int[][] allMarks) {
+		double classAverage = 0;		//An int which will be the class average
+		String output = "";				//The string that the function will output
+		for(int[] row : allMarks) {		//These nested foreach loops will add up all of the numbers in the 2D array.
+			for(int block : row) {
+				classAverage += block;
 			}
 		}
-		
-		//calculate the average
-		average = totalSum/(numStudents * 6);
-		
-		return average;
+		//This calculates the average (the Sum / (# of assignments * # of students))
+		classAverage = classAverage / 24;
+		//This will return a formated version of the string (max 3 decimal places).
+		return output.format("Class Average  : %.3f", classAverage);
 	}
 }
