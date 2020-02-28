@@ -17,22 +17,22 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class SimpleCalc {
+	//These are variables for the objects that will be created later.
 	protected Shell shlSimpleCalculator;
 	private Text txtFirstNumber;
 	private Text txtSecondNumber;
 	
+	//Automatically created...
 	public static void main(String[] args) {
 		try {
 			SimpleCalc window = new SimpleCalc();
 			window.open();
-		} 
-		
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
+	//Automatically created...
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -45,7 +45,7 @@ public class SimpleCalc {
 		}
 	}
 
-
+	//Automatically created...
 	protected void createContents() {
 		shlSimpleCalculator = new Shell();
 		shlSimpleCalculator.setSize(261, 154);
@@ -70,44 +70,51 @@ public class SimpleCalc {
 		txtSecondNumber.setBounds(129, 31, 106, 21);
 		
 		Button btnAddition = new Button(shlSimpleCalculator, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnAddition.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//Temporary variables for the first and second number.
 				int firstNumber, secondNumber;
+				//This try-catch loop will catch any errors that occur during runtime.
+				//The procedure will try to...
 				try {
-					firstNumber = Integer.parseInt(txtFirstNumber.getText());
-					secondNumber = Integer.parseInt(txtSecondNumber.getText());
+					firstNumber = Integer.parseInt(txtFirstNumber.getText());	//Parse the text from txtFirstNumber into an int
+					secondNumber = Integer.parseInt(txtSecondNumber.getText());	//Parse the text from txtSecondNumber into an int
 					
-				}
-				catch (Exception exc) {
+					int answer = firstNumber + secondNumber;		//Creates a variable called answer and adds the two numbers together.
+					lblAnswer.setText("The Answer is : " + answer); //Sets the text of lblAnswer to the answer.
+				  //If an exception occurs during runtime...
+				} catch (Exception exc) {
+					//Tell the user that they have inputed an invalid number
 					MessageDialog.openError(shlSimpleCalculator, "Error", "Invalid Number");
-					return;
 				}
-				int answer = firstNumber + secondNumber;
-				lblAnswer.setText("The Answer is : " + answer);
 			}
 		});
 		btnAddition.setBounds(10, 58, 39, 25);
 		btnAddition.setText("+");
 		
 		
-		
 		Button btnSubtract = new Button(shlSimpleCalculator, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnSubtract.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//Temporary variables for the first and second number.
 				int firstNumber, secondNumber;
+				//This try-catch loop will catch any errors that occur during runtime.
+				//The procedure will try to...
 				try {
-					firstNumber = Integer.parseInt(txtFirstNumber.getText());
-					secondNumber = Integer.parseInt(txtSecondNumber.getText());
+					firstNumber = Integer.parseInt(txtFirstNumber.getText());	//Parse the text from txtFirstNumber into an int
+					secondNumber = Integer.parseInt(txtSecondNumber.getText());	//Parse the text from txtSecondNumber into an int
 					
-				}
-				catch (Exception exc) {
+					int answer = firstNumber - secondNumber;		//Creates a variable called answer and subtracts the two numbers.
+					lblAnswer.setText("The Answer is : " + answer);	//Sets the text of lblAnswer to the answer.
+					//If an exception occurs during runtime...
+				} catch (Exception exc) {
+					//Tell the user that they have inputed an invalid number
 					MessageDialog.openError(shlSimpleCalculator, "Error", "Invalid Number");
-					return;
 				}
-				int answer = firstNumber - secondNumber;
-				lblAnswer.setText("The Answer is : " + answer);
 			}
 		});
 		btnSubtract.setText("-");
@@ -116,21 +123,25 @@ public class SimpleCalc {
 		
 		
 		Button btnMultiply = new Button(shlSimpleCalculator, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnMultiply.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//Temporary variables for the first and second number.
 				int firstNumber, secondNumber;
+				//This try-catch loop will catch any errors that occur during runtime.
+				//The procedure will try to...
 				try {
-					firstNumber = Integer.parseInt(txtFirstNumber.getText());
-					secondNumber = Integer.parseInt(txtSecondNumber.getText());
+					firstNumber = Integer.parseInt(txtFirstNumber.getText());	//Parse the text from txtFirstNumber into an int
+					secondNumber = Integer.parseInt(txtSecondNumber.getText());	//Parse the text from txtSecondNumber into an int
 					
-				}
-				catch (Exception exc) {
+					int answer = firstNumber * secondNumber;		//Creates a variable called answer and multiplies the two numbers.
+					lblAnswer.setText("The Answer is : " + answer);	//Sets the text of lblAnswer to the answer.
+					//If an exception occurs during runtime...
+				} catch (Exception exc) {
+					//Tell the user that they have inputed an invalid number
 					MessageDialog.openError(shlSimpleCalculator, "Error", "Invalid Number");
-					return;
 				}
-				int answer = firstNumber * secondNumber;
-				lblAnswer.setText("The Answer is : " + answer);
 			}
 		});
 		btnMultiply.setText("*");
@@ -139,21 +150,25 @@ public class SimpleCalc {
 		
 		
 		Button btnDivide = new Button(shlSimpleCalculator, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnDivide.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//Temporary variables for the first and second number.
 				double firstNumber, secondNumber;
+				//This try-catch loop will catch any errors that occur during runtime.
+				//The procedure will try to...
 				try {
-					firstNumber = Double.parseDouble(txtFirstNumber.getText());
-					secondNumber = Double.parseDouble(txtSecondNumber.getText());
+					firstNumber = Double.parseDouble(txtFirstNumber.getText());	  //Parse the text from txtFirstNumber into a double
+					secondNumber = Double.parseDouble(txtSecondNumber.getText()); //Parse the text from txtSecondNumber into a double
 					
-				}
-				catch (Exception exc) {
+					double answer = firstNumber / secondNumber;		//Creates a variable called answer and divides the two numbers.
+					lblAnswer.setText("The Answer is : " + answer);	//Sets the text of lblAnswer to the answer.
+					//If an exception occurs during runtime...	
+				} catch (Exception exc) {
+					//Tell the user that they have inputed an invalid number
 					MessageDialog.openError(shlSimpleCalculator, "Error", "Invalid Number");
-					return;
 				}
-				double answer = firstNumber / secondNumber;
-				lblAnswer.setText("The Answer is : " + answer);
 			}
 		});
 		btnDivide.setText("/");
