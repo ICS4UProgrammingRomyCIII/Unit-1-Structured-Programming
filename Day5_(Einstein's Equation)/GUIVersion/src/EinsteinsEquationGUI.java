@@ -17,8 +17,13 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class EinsteinsEquationGUI {
+	//These are variables for the objects that will be created later.
 	protected Shell frmEinsteinsEquation;
 	private Text txtMass;
+	
+	static final double SPEED_OF_LIGHT = 2.998e8; //A constant for the speed of light.
+	
+	//Automatically created...
 	public static void main(String[] args) {
 		try {
 			EinsteinsEquationGUI window = new EinsteinsEquationGUI();
@@ -27,7 +32,8 @@ public class EinsteinsEquationGUI {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//Automatically created...
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -39,7 +45,8 @@ public class EinsteinsEquationGUI {
 			}
 		}
 	}
-
+	
+	//Automatically created...
 	protected void createContents() {
 		frmEinsteinsEquation = new Shell();
 		frmEinsteinsEquation.setSize(543, 123);
@@ -57,24 +64,25 @@ public class EinsteinsEquationGUI {
 		
 	
 		Button btnCalculate = new Button(frmEinsteinsEquation, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnCalculate.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-			final double SPEED_OF_LIGHT = 2.998e8;
-			double cSquared = Math.pow(SPEED_OF_LIGHT, 2.0);
-			Double energy;
-			Double massOfObject = null;
+			double cSquared = Math.pow(SPEED_OF_LIGHT, 2.0); 		//Squares the speed of light.
+			Double energy;							//Creates a temporary variable for the energy(the answer).
+			Double massOfObject;
 			try {
-				massOfObject = Double.parseDouble(txtMass.getText());
+				massOfObject = Double.parseDouble(txtMass.getText()); //Parses the text from the textbox into a double.
+				energy = massOfObject * cSquared;		      //Calculates the energy.
+				//Creates a string variable called output and sets as a formatted version of energy(max of 3 decimal places).
+				String output = String.format("An object with a mass of %.3f, has %.3e Joules of energy", massOfObject, energy);
+				lblAnswer.setText(output);			      //Sets the labels text to the output.
 			}
+			//If an exception occurs during runtime...
 			catch (Exception exc) {
+				//Tell the user that they inputed an invalid number.
 				MessageDialog.openError(frmEinsteinsEquation, "An Error has Occurred", "There was an invalid number in the text field!");
 			}
-			
-			energy = massOfObject * cSquared;
-			String output = String.format("An object with a mass of %.3f, has %.3e Joules of energy", massOfObject, energy);
-			lblAnswer.setText(output);
-			//lblAnswer.setText(Double.toString(energy));
-			}
+		}
 		});
 		btnCalculate.setBounds(163, 31, 75, 21);
 		btnCalculate.setText("Calculate");
