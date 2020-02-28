@@ -9,30 +9,35 @@
 import java.util.Scanner;
 
 public class Einsteins_Equation {
-	static Scanner scan = new Scanner(System.in);
-	static final double SPEED_OF_LIGHT =  2.998e8;
+	static Scanner scan = new Scanner(System.in);  //This scanner is used to check for user input.
+	static final double SPEED_OF_LIGHT =  2.998e8; //This is a constant for the speed of light.
+	
+	//Automatically created...
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//This calls the CalculateEnergy() procedure.
 		CalculateEnergy();
 	}
-	
+
 	public static void CalculateEnergy() {
-		Double massObject;
+		Double massObject; //This creates temporary variable for the mass of the object.
+		
+		//This try-catch loop will catch any errors that occur during runtime.
+		//The procedure will try to...
 		try {
-			System.out.print("Please type in a number.....");
-			String usrInput = scan.nextLine();
+			System.out.print("Please type in a number....."); //Tell the user to input a number.
+			String usrInput = scan.nextLine();		  //Check for the user input.
+			//If the user's input isn't blank...
 			if (usrInput != null) {
-				massObject = Double.parseDouble(usrInput);
+				massObject = Double.parseDouble(usrInput);//Parse the user's input as a double
+				double energy = massObject * (SPEED_OF_LIGHT * SPEED_OF_LIGHT); //Calculates the energy.
+				//Outputs the answer to the console.
+				System.out.println("The energy of an object with a mass of " + massObject + "kg is " + energy + "J");
 			}
-			else {
-				return;
-			}
-			double energy = massObject * (SPEED_OF_LIGHT * SPEED_OF_LIGHT);
-			System.out.println("The energy of an object with a mass of " + massObject + "kg is " + energy + "J");
 		}
+		//If an exception occurs during runtime...
 		catch (Exception e){
-			System.out.println("Invalid Number");
-			CalculateEnergy();
+			System.out.println("Invalid Number"); //Tell the user that they inputed an invalid number.
+			CalculateEnergy();		      //Call the CalculateEnergy() Procedure again.
 		}
 	}
 }
