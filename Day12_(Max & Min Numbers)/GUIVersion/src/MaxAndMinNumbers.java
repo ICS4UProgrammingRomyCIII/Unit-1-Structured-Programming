@@ -27,10 +27,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
 public class MaxAndMinNumbers extends JFrame {
+	//These are variables for the objects that will be created later.
 	private JPanel contentPane;
-	static int[] numbers = new int[10];
-	static boolean btnPressed = false;
+	
+	static int[] numbers = new int[10]; // An array to store 10 random integers.
 
+	//Automatically created...
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,6 +46,7 @@ public class MaxAndMinNumbers extends JFrame {
 		});
 	}
 
+	//Automatically created...
 	public MaxAndMinNumbers() {
 		setTitle("Max and Min Numbers");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,49 +69,47 @@ public class MaxAndMinNumbers extends JFrame {
 		contentPane.add(textArea);
 		
 		JButton btnGenerateNumbers = new JButton("Generate \r\n\r\nNumbers");
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnGenerateNumbers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				btnPressed = true;
-				if(btnPressed) {
-					textArea.setText("");
-					btnPressed = false;
-					Random ranNum = new Random();
-					for(int i = 0; i < numbers.length; i++) {
-						numbers[i] = (ranNum.nextInt(100) + 1);
-						textArea.setText(textArea.getText() + "\n" + numbers[i]);	
-					}
-				}else {
-					Random ranNum = new Random();
-					for(int i = 0; i < numbers.length; i++) {
-						numbers[i] = (ranNum.nextInt(99) + 1);
-						textArea.setText(textArea.getText() + "\n" + numbers[i]);	
+				textArea.setText("");							  // Clears the text area.
+				Random ranNum = new Random();						  // Creates a new Random Object.			
+				for(int i = 0; i < numbers.length; i++) {				  // For when integer i is less than the array length of numbers.		
+					//This if-else statment prevents the first line in the text area from being a '\n'.
+					if(numbers[0] == 0) {						  // If numbers[0] is 0.
+						numbers[i] = (ranNum.nextInt(100) + 1);			  // Generate a random number and add it to the array.
+						textArea.setText(textArea.getText() + numbers[i]);	  // Add the number to the text area.
+					}else {								  // Otherwise...
+						numbers[i] = (ranNum.nextInt(100) + 1);			  // Generate a random number and add it to the array.
+						textArea.setText(textArea.getText() + "\n" + numbers[i]); // Add '\n' and the random number to the text area.
 					}
 				}
-				lblMaxNum.setText("The max Number is : " + GetMax(numbers));
-				lblMinNum.setText("The min Number is : " + GetMin(numbers));
+				lblMaxNum.setText("The max Number is : " + GetMax(numbers));		  // Gets the largest number.
+				lblMinNum.setText("The min Number is : " + GetMin(numbers));		  // Gets the smallest number.
 			}
 		});
 		btnGenerateNumbers.setBounds(10, 11, 131, 23);
 		contentPane.add(btnGenerateNumbers);
 	}
 	
+	// This function gets the largest number in an array.
 	private Integer GetMax(int[] listInts) {
-		int maxNumber = 0;
-		for(int currentNum : listInts) {
-			if(currentNum > maxNumber) {
-				maxNumber = currentNum;
+		int maxNumber = 0;			// Create a variable for the max number.
+		for(int currentNum : listInts) {	// For each integer in the array...
+			if(currentNum > maxNumber) {	// If the current number (in the array) is bigger than the maxNumber...
+				maxNumber = currentNum; // Make the current nunmber the new maxNumber.
 			}
 		}
-		return maxNumber;
+		return maxNumber;			// Return the maxNumber.
 	}
-	
+	// This function gets the smallest number in an array.
 	private Integer GetMin(int[] listInts) {
-		int minNumber = 100;
-		for(int currentNum : listInts) {
-			if(currentNum < minNumber) {
-				minNumber = currentNum;
+		int minNumber = 100;			// Create a variable for the min number.
+		for(int currentNum : listInts) {	// For each integer in the array...
+			if(currentNum < minNumber) {    // If the current number (in the array) is smaller than the minNumber...
+				minNumber = currentNum; // Make the current nunmber the new minNumber.
 			}
 		}
-		return minNumber;
+		return minNumber;			// Return the minNumber.
 	}
 }
