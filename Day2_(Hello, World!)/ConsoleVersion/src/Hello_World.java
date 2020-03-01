@@ -7,8 +7,8 @@
 */
 
 public class Hello_World {
+	//Automatically Created...
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		//Variables
 		int i;
 		String firstWord = "Hello";
@@ -17,7 +17,7 @@ public class Hello_World {
 		String name = "Romy III";
 		String statement = "My name is ";
 		
-		//Code
+		//This for loop will print the message 10 times.
 		for (i=0; i<= 10; i++) {
 			System.out.println(firstWord + " " + secondWord + exclMark + " " + statement + name);
 		}
