@@ -1,3 +1,11 @@
+/*
+ * Created by: Romy I. Chu III
+ * Created on: 03-Feb-2019
+ * Created for: ICS4U
+ * Day #2 (Hello, World!)
+ * This program ... Displays a message box.
+*/
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
@@ -47,7 +55,7 @@ public class HelloWorldGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//Opens a message box and displays a message
-				JOptionPane.showMessageDialog(null, "Hello Small world of ICS4U Programming!!");
+				JOptionPane.showMessageDialog(frmWhat, "Hello Small world of ICS4U Programming!!");
 			}
 		});
 		btnSurprise.setBounds(10, 10, 172, 103);
