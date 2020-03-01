@@ -17,10 +17,12 @@ import org.eclipse.swt.events.SelectionEvent;
 import javax.swing.JOptionPane;
 
 public class BoardFoot {
+	// These are variables for the objects that will be created later.
 	protected Shell frmBoardFoot;
 	private Text txtFirstNum;
 	private Text txtSecondNum;
-
+	
+	// Automatically created...
 	public static void main(String[] args) {
 		try {
 			BoardFoot window = new BoardFoot();
@@ -30,7 +32,7 @@ public class BoardFoot {
 		}
 	}
 
-	
+	// Automatically created...
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -43,7 +45,7 @@ public class BoardFoot {
 		}
 	}
 
-
+	// Automatically created...
 	protected void createContents() {
 		frmBoardFoot = new Shell();
 		frmBoardFoot.setSize(350, 154);
@@ -68,9 +70,12 @@ public class BoardFoot {
 		lblThirdDim.setText("The Third Dimension is : ");
 		
 		Button btnCalculate = new Button(frmBoardFoot, SWT.NONE);
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnCalculate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				//This try-catch loop will catch any errors that occur during runtime.
+				//The procedure will try to...
 				try {
 					//Get the user's inputs as a double
 					Double firstDim = Double.parseDouble(txtFirstNum.getText());
@@ -79,6 +84,7 @@ public class BoardFoot {
 					Double thirdDim = 144/(firstDim * secondDim);
 					
 					lblThirdDim.setText(String.format("The Third Dimension is : %.4f", thirdDim));
+				 //If an exception occurs during runtime...
 				}catch(Exception exc) {
 					//Tell the user that they inputted an invalid number.
 					JOptionPane.showMessageDialog(null, "You Have Inputted an invalid Number!!", "An Error Has Occurred", JOptionPane.ERROR_MESSAGE);
