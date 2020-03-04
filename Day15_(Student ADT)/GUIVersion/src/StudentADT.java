@@ -94,24 +94,29 @@ public class StudentADT extends JFrame {
 		contentPane.add(chkIdentified);
 		
 		JButton btnEnterInfo = new JButton("Enter");
+		//This Block of code creates an action listener and attaches it to the button. 
 		btnEnterInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// This try-catch loop will catch any errors that occur during runtime.
+				// The procedure will try to...
 				try {
 					StudentInfo studentInfo = new StudentInfo();							  // Creates a new Object for the studentInfo class.
 					studentInfo.firstName = txtFirstName.getText();							  // Get the student's first name from the text box.
 					studentInfo.lastName = txtLastName.getText();							  // Get the student's last name from the text box.
-					studentInfo.middleInitial = txtMiddleInit.getText();					  // Get the student's middle inin from the text box.
-					studentInfo.grade = Integer.parseInt((String) cmbGrade.getSelectedItem());//
-					if(chkIdentified.isSelected()) {										  //
-						studentInfo.identified = "identified";
-					} else {
-						studentInfo.identified = "not identified";
+					studentInfo.middleInitial = txtMiddleInit.getText();					  // Get the student's middle initial from the text box.
+					studentInfo.grade = Integer.parseInt((String) cmbGrade.getSelectedItem());// Get the student's grade from the combo box.
+					if(chkIdentified.isSelected()) {										  // If the student is identified...
+						studentInfo.identified = "identified";						   		  // Say that the student is identified.
+					} else {																  // Otherwise...
+						studentInfo.identified = "not identified";							  // Say that the student isn't identified.
 					}
-					if(studentInfo.firstName == null || studentInfo.lastName == null) {
-					} else {
-						studentInfo.Display();
+					if(studentInfo.firstName == null || studentInfo.lastName == null) {		  // If the user didn't input the first or last name... cause an exception.
+					} else {																  // Otherwise...
+						studentInfo.Display();												  // Display the student's information.
 					}
+				  // If an exception occurs during runtime...
 				} catch (Exception exc) {
+					// Tell the user that they didn't enter the required information.
 					JOptionPane.showMessageDialog(null, "The information that has been inputed is incorrect.\n You need at least the first and last name!!", "An Error Has Occurred", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -123,16 +128,18 @@ public class StudentADT extends JFrame {
 	
 	//create a class for the students
 	class StudentInfo {
-			String firstName;
-			String lastName;
-			String middleInitial;
-			int grade;
-			String identified;
+			String firstName;		// A string for the student's first name.
+			String lastName;		// A string for the student's last name.
+			String middleInitial;   // A string for the student's middle initial.
+			int grade;				// An int for the student's grade.
+			String identified;		// A string for the student's identification.
 			
-			//to display for the user
+			// A function that will display the student's information
 			public void Display() {
-				//display to the user
-				JOptionPane.showMessageDialog(null, " " + firstName + " " + middleInitial + " " + lastName + " is in grade " + grade +" and is " + identified );
+				// format a string to output the information.
+				String output = String.format("%s %s %s is in grade %d and is %s", firstName, middleInitial, lastName, grade, identified);
+				// Display the information to the user
+				JOptionPane.showMessageDialog(null, output);
 			}
 	}
 }
